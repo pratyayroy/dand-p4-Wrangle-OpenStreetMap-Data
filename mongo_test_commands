@@ -1,0 +1,44 @@
+DESCRIPTION
+-----------
+This file describes the various MongoDB commands that can be performed in the MongoDB shell to check the Data Wrangling 
+carried out by Python Scripts.
+
+SETUP
+-----
+database = OSM
+collection = kolkata
+
+MongoDB commands with expected outputs
+--------------------------------------
+db.kolkata.find({IR:{zone:"ER"}}).count()
+expected: 0
+
+db.kolkata.find({IR:{zone:"eastern_railway"}}).count()
+expected: 3
+
+db.kolkata.find({PARK: {"$exists": 1}}, {_id: 0, PARK: 1})
+expected: { "PARK" : "Crek Park" }
+
+db.kolkata.find({access: {"$exists": 1}}, {_id: 0, access: 1})
+expected: all results should be in lowercase
+
+db.kolkata.find({addr: {"$exists": 1}}).count()
+expected: 0
+
+db.kolkata.find({address: {"$exists": 1}}).count()
+expected:1864
+
+db.kolkata.find({address: {"$exists": 1}}, {_id: 0, address: 1})
+expected: a collection of all multilevel tags related to addr
+
+db.kolkata.distinct("address.city")
+expected: realization of mappings as depicted in map_tag_value
+
+db.kolkata.distinct("address.postcode")
+expected: 6 digits Indian postcode for the state of West Bengal as discussed
+
+db.kolkata.distinct("is_in.country")
+expected: India
+
+db.kolkata.distinct("is_in.state")
+expected: West Bengal

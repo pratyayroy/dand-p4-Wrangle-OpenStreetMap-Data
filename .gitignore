@@ -1,0 +1,6 @@
+.idea/
+.ipynb_checkpoints
+Datasets/
+Documentation/
+maps_uncompressed/
+order_of_execution.txt
