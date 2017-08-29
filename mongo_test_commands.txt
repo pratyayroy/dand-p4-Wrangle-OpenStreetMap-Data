@@ -10,14 +10,32 @@ collection = kolkata
 
 MongoDB commands with expected outputs
 --------------------------------------
-db.kolkata.find({IR:{zone:"ER"}}).count()
-expected: 0
 
-db.kolkata.find({IR:{zone:"eastern_railway"}}).count()
+#########################
+### CHECKING THE KEYs ###
+#########################
+
+db.kolkata.find({indian_railways:{zone:"eastern_railway"}}).count()
 expected: 3
 
-db.kolkata.find({PARK: {"$exists": 1}}, {_id: 0, PARK: 1})
-expected: { "PARK" : "Crek Park" }
+db.kolkata.find({park: {"$exists": 1}}, {_id: 0, park: 1})
+expected: all possible values of "park"
+
+db.kolkata.find({Road:{"$exists": 1}}).count()
+expected: 0
+
+db.kolkata.find({indian_railways_route_rank:{"$exists": 1}}).count()
+expected: 32
+
+db.kolkata.find({"internet_access": {"$exists": 1}}, {_id: 0, internet_access:1})
+expected: "wifi" should not be in the output
+
+db.kolkata.find({"name.abbr": {"$exists": 1}}).count()
+expected: 0
+
+#######################
+### CHECKING VALUEs ###
+#######################
 
 db.kolkata.find({access: {"$exists": 1}}, {_id: 0, access: 1})
 expected: all results should be in lowercase
@@ -42,3 +60,9 @@ expected: India
 
 db.kolkata.distinct("is_in.state")
 expected: West Bengal
+
+############
+## ERRORS ##
+############
+
+ISO3166-2 to is_in:iso_3166_2 not showing up.
