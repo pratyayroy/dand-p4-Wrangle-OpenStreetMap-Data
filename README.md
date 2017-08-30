@@ -30,6 +30,7 @@ Documents
 * **order_of_execution.txt**: This text file contains the order in which the python scripts should be executed.
 
 > **Note**
+>
 > The .osm and .json cannot be included due to the large size (I am having some issues with git lfs). There are two ways to use them tough.
 >
 > * You can uncompress *"custom_kolkata.osm.bz2"* that is present inside the *"Datasets"* directory.
