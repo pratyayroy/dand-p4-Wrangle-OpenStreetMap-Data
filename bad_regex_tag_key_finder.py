@@ -1,8 +1,8 @@
 """
-STATUS: ok
+This script groups the previously found 48 unusual keys into 4 REGULAR EXPRESSION categories based on standards of keys
+in OSM wiki. This determines the ones which should be taken care of immediately, and which can be left behind.
 """
 
-from functions import *
 import re
 
 """
@@ -23,20 +23,31 @@ case2_keys = set()
 case3_keys = set()
 good_keys = set()
 
+# I have saved the previous result to save run-time
+unusual_tag_key = set(
+    ['City', 'PARK', 'via', 'gns:dsg', 'ref:new', 'alt_name:pl', 'ISO3166-2', 'is_capital', 'route_refs', 'foot_1',
+     'seamark:mooring:colour', 'IRrouterank', 'seamark:construction', 'phone_2', 'phone_3', 'phone_1',
+     'mini_roundabout', 'from', 'district', 'section', 'kindergarten', 'to', 'Road', 'gns:uni', 'GNS:id', 'taluk',
+     'Tank', 'seamark:information', 'park', 'building_1', 'abandoned:aeroway', 'name:abbr', 'currency:INR', 'ref:old',
+     'payment:bitcoin', 'orphanage', 'IR:zone', 'AND_a_nosr_p', 'AND_a_c', 'AND_a_nosr_r', 'place:cca', 'alt_name:eo',
+     'AND_a_w', 'leisure_1', 'leisure_2', 'seamark:status', 'source:tracer', 'is_in:iso_3166_2'])
 
+
+# based on the detected type, the key is added in its deserved set
 def key_regex_type(element):
-    if case1.search(element.get("k")):
-        case1_keys.add(element.get("k"))
-    elif case2.search(element.get("k")):
-        case2_keys.add(element.get("k"))
-    elif case3.search(element.get("k")):
-        case3_keys.add(element.get("k"))
+    if case1.search(element):
+        case1_keys.add(element)
+    elif case2.search(element):
+        case2_keys.add(element)
+    elif case3.search(element):
+        case3_keys.add(element)
     else:
-        good_keys.add(element.get("k"))
+        good_keys.add(element)
 
 
+# yielding the tag called TAG and inspecting its key
 def key_regex_validation():
-    for element in get_element('tags'):
+    for element in unusual_tag_key:
         key_regex_type(element)
 
 

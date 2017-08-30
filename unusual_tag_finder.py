@@ -1,13 +1,13 @@
 """
-STATUS: ok
+This script finds among the UNIQUE TAG KEYs, the ones which do not have a proper wiki in tagsinfo
 """
 from bs4 import BeautifulSoup
 import requests
 import time
+# from unique_tag_finder import *
 
-# from tag_type_audit import *
-
-# uncomment "tag_type_audit" import to get dynamic unique_tag_key and not the static one as used
+# uncomment the above import to get dynamic unique_tag_key and not the static one as used
+# I have used the static one to speed-up. This contains a 359 tag keys found from the previous script
 unique_tag_key = set(
     ['maxspeed', 'currency:others', 'IRrouterank', 'seamark:construction', 'is_in', 'seamark:type', 'created_by', 'to',
      'crossing:barrier', 'fax', 'name:ur', 'icao', 'name:uk', 'motor_vehicle', 'addr:street', 'source:name',

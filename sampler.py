@@ -1,11 +1,12 @@
 """
-STATUS: ok
+This creates a small sample of my .osm file mainly used for familiarization with the data and debugging purposes.
+I have included the .osm generated from here "sample1.osm" in maps_uncompressed because of its small size
 """
 
 from functions import *
 
 SAMPLE_FILE = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), 'maps_uncompressed')),
-                           "sample1.osm")
+                           "sample1.osm")  # the directory and filename for storing the data
 
 k = 100  # Parameter: take every k-th top level element
 

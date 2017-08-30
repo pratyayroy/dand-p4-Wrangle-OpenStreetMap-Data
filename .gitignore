@@ -1,4 +1,6 @@
 .idea/
-.ipynb_checkpoints
-Documentation/
+.ipynb_checkpoints/
 *.pyc
+Documentation/ipynb_checkpoints/
+.gitignore
+.gitattributes

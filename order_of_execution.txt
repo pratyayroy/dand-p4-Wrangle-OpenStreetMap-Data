@@ -1,5 +1,14 @@
-1. sampler.py (RETEST)
-2. map_parser.py (RETEST)
+DESCRIPTION
+-----------
+This file contains the order of execution of the Python Scripts.
+Actually they are linked and nth script uses (n-1)th script's outputs.
+To save running time I have stored the previous outputs in compatible variables.
+
+
+ORDER OF EXECUTION
+------------------
+1. sampler.py
+2. map_parser.py
 3. unique_tag_key_finder.py
 4. unusual_tag_key_finder.py
 5. bad_regex_tag_key_finder.py
