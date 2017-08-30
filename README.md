@@ -9,13 +9,13 @@ Documents
 ---------
 
 * **Datasets**: This folder contains the downloaded extract of Kolkata from Mapzen.
-	* **custom_kolkata.osm.bz2**: My custom extract of Kolkata.
+	* **custom_kolkata.osm.bz2**: My custom extract of Kolkata that I used throughout the project.
 	*  **kolkata_india.osm.bz2**: The popular extract of Kolkata.
 * **Documentation**: This folder contains actual report of this project.
 	*  **Kolkata.ipynb**: This is the Jupyter Notebook containing the detailed report of my Data Wrangling project.
 * **maps_uncompressed**: This folder contains the unzipped extracts and converted JSON for MongoDB import.
-	* **custom_kolkata.osm**: The unzipped version of the custom extract of Kolkata.
-	* **custom_kolkata.osm.json**: The JSON equivalent of the uncompressed .osm map.
+	* **custom_kolkata.osm** *(please refer to notes)*: The unzipped version of the custom extract of Kolkata.
+	* **custom_kolkata.osm.json** *(please refer to notes)*: The JSON equivalent of the uncompressed .osm map.
 	* **sample1.osm**: A partial equivalent of the uncompressed map mainly used for debugging purposes.
 * **Screenshots**: This folder contains the necessary screenshots used as a suggestion for possible improvement of the OSM.
 * **sampler.py**: This python script converts the large OSM file to a small sample mainly used for debugging.
@@ -29,6 +29,17 @@ Documents
 * **mongo_test_commands.txt**: This file contains various MongoDB shell commands that can be used for verification if the JSON is generated and fed as expected.
 * **order_of_execution.txt**: This text file contains the order in which the python scripts should be executed.
 
-> *the python scripts are listed according to the execution order*
+> **Note**
+> The .osm and .json cannot be included due to the large size (I am having some issues with git lfs). There are two ways to use them tough.
+
+> * You can uncompress *"custom_kolkata.osm.bz2"* that is present inside the *"Datasets"* directory.
+
+>* You can also download it via this [custom .osm extract link](https://mapzen.com/data/metro-extracts/your-extracts/320cb2360f25) which is accessible if you create a free Mapzen Account. 
+>
+>* Please ensure that the uncompressed custom extract is stored in the *"maps_uncompressed"* directory and be named *"custom_kolkata.osm."* (alternatively the OSM file location can be changed by modifying the variable *"OSM_file"* in *"functions.py"*. 
+>
+> * The .json can be created in the same location of the .osm by running the *"json_maker.py"*.
+
+> I apologize for the inconvenience. Hopefully I'll get working soon.
 
 ---
