@@ -31,15 +31,15 @@ Documents
 
 > **Note**
 > The .osm and .json cannot be included due to the large size (I am having some issues with git lfs). There are two ways to use them tough.
-
+>
 > * You can uncompress *"custom_kolkata.osm.bz2"* that is present inside the *"Datasets"* directory.
-
+>
 >* You can also download it via this [custom .osm extract link](https://mapzen.com/data/metro-extracts/your-extracts/320cb2360f25) which is accessible if you create a free Mapzen Account. 
 >
 >* Please ensure that the uncompressed custom extract is stored in the *"maps_uncompressed"* directory and be named *"custom_kolkata.osm."* (alternatively the OSM file location can be changed by modifying the variable *"OSM_file"* in *"functions.py"*. 
 >
 > * The .json can be created in the same location of the .osm by running the *"json_maker.py"*.
-
+>
 > I apologize for the inconvenience. Hopefully I'll get working soon.
 
 ---
