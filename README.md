@@ -29,7 +29,7 @@ Documents
 * **mongo_test_commands.txt**: This file contains various MongoDB shell commands that can be used for verification if the JSON is generated and fed as expected.
 * **order_of_execution.txt**: This text file contains the order in which the python scripts should be executed.
 
-> **Note**
+> **Notes**
 >
 > The .osm and .json cannot be included due to the large size (I am having some issues with git lfs). There are two ways to use them tough.
 >
@@ -41,6 +41,6 @@ Documents
 >
 > * The .json can be created in the same location of the .osm by running the *"json_maker.py"*.
 >
-> I apologize for the inconvenience. Hopefully I'll get working soon.
+> I apologize for the inconvenience. Hopefully I'll get it working soon.
 
 ---
