@@ -33,8 +33,13 @@ unusual_tag_key = set(
      'AND_a_w', 'leisure_1', 'leisure_2', 'seamark:status', 'source:tracer', 'is_in:iso_3166_2'])
 
 
-# based on the detected type, the key is added in its deserved set
+#
 def key_regex_type(element):
+    """
+    based on the detected type, the key is added in its deserved set
+    :param element: the key that we want to compare
+    :return: it is added to the global set matching its pattern
+    """
     if case1.search(element):
         case1_keys.add(element)
     elif case2.search(element):
@@ -45,8 +50,11 @@ def key_regex_type(element):
         good_keys.add(element)
 
 
-# yielding the tag called TAG and inspecting its key
 def key_regex_validation():
+    """
+    yielding the tag called TAG and inspecting its key
+    :return: the key is added to the global set matching its pattern
+    """
     for element in unusual_tag_key:
         key_regex_type(element)
 

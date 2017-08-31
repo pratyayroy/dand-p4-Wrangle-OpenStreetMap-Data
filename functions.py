@@ -8,21 +8,17 @@ import string
 import re
 import unidecode
 
-# todo: Sync the body with Notebook (done)
-# todo: Comment the whole code (done)
-
 # Definition of default OSM_FILE location
 OSM_FILE = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), 'maps_uncompressed')),
                         "custom_kolkata.osm")
 
-"""
-FUNCTION: get_element
-STATUS: ok
-"""
 
-
-# Helper function to yield element if it is the right type of tag
 def get_element(tags):
+    """
+    yields XML Tree if it is the right type of tag
+    :param tags: the list of tags that needs to be searched for
+    :return: the XML tree for the tag
+    """
     context = iter(ET.iterparse(OSM_FILE, events=('start', 'end')))
     _, root = next(context)
     for event, elem in context:
@@ -31,15 +27,13 @@ def get_element(tags):
             root.clear()
 
 
-"""
-FUNCTION: get_key_value
-STATUS: ok
-"""
-
-
-# Helper function to generate key-value pair of tag(s)
-# Usage: For auditing purpose, this generates all the possible distinct values of tag(s) along with the key(s)
 def get_key_value(tag, key):
+    """
+    generates key-value pair of the passed tag
+    :param tag: the tag whose key-value pairs should be generated
+    :param key: the keys whose all available values needs to be recorded
+    :return: a default dictionary containing the set of values for passed keys for a particular tag
+    """
     pair = defaultdict(set)  # all the values are stored as a set to a key
     for elem in get_element(tag):
         if elem.get('k') in key:
@@ -47,15 +41,13 @@ def get_key_value(tag, key):
     return pair
 
 
-"""
-FUNCTION: get_key_modified_value
-STATUS: 
-"""
-
-
-# Helper function to generate key-modified:value pair of a tag
-# Usage: For auditing purpose, it generates all wrangled values of tag(s) along with the key(s)
 def get_key_modified_value(tag, key):
+    """
+    generates key-(modified:value) pair of a tag for auditing
+    :param tag: the tag whose key-(modified:value) pairs should be generated
+    :param key: the keys whose all available (modified:value) needs to be recorded
+    :return: a default dictionary containing the set of (modified:value) for passed keys for a particular tag
+    """
     pair = defaultdict(set)
     for elem in get_element(tag):
         if elem.get('k') in key:
@@ -94,15 +86,13 @@ def get_key_modified_value(tag, key):
     return pair
 
 
-"""
-FUNCTION: get_modified_value
-STATUS: 
-"""
-
-
-# Helper function to return wrangled value of a key for entry in JSON
-# Usage: json_maker will call this function to modify the values before creating the JSON
 def get_modified_value(k, v):
+    """
+    performs lookup for replacement of old value of a key
+    :param k: the key whose key whose (modified:value) should be generated
+    :param v: the old value to lookup for a possible (modified:value) match
+    :return: the (modified:value) corresponding to the old value of a particular key for "TAG" tag
+    """
     if k == "IR:zone":
         v = fix_replacement(v)
     if k == "PARK":
@@ -138,15 +128,12 @@ def get_modified_value(k, v):
     return v
 
 
-"""
-FUNCTION: get_modified_key
-STATUS: 
-"""
-
-
-# Helper function to return wrangled key for entry in JSON
-# Usage: Returns the modified key when a key is passed and detected in the mapping
 def get_modified_key(k):
+    """
+    performs lookup for replacement of old key
+    :param k: the old key to lookup for a possible (modified:key) match
+    :return: returns the modified key when a key is passed and detected in the mapping
+    """
     if k in map_tag_key:
         return map_tag_key[k]
     else:
@@ -218,43 +205,53 @@ map_tag_value = {
 
 }
 
-"""
-HELPER FUNCTIONS TO WRANGLE THE DATA
-"""
 
-
-# Helper function for general replacements based on map
-# STATUS: ok
 def fix_replacement(val):
+    """ for general lookup based on (old_value: new_value) map
+
+    :param val: the value that needs to be searched for
+    :return: the modified value if lookup was a hit else the old value
+    """
     if val in map_tag_value:
         val = map_tag_value[val]
     return val
 
 
-# Helper function for lowercase conversion
-# STATUS: ok
 def fix_lowercase(val):
+    """
+    for lowercase conversion
+    :param val: the value that needs to be lower-cased
+    :return: the modified value
+    """
     return val.lower()
 
 
-# Helper function for capitalization of each word
-# STATUS: ok
 def fix_park(val):
+    """ for capitalization of each word
+    :param val: the string that needs to be cap-worded
+    :return: the modified value
+    """
     return string.capwords(val)
 
 
-# Helper function to fix addr:city
-# STATUS: ok
 def fix_addr_city(city):
+    """
+    to fix addr:city
+    :param city: the city name that needs to be fixed
+    :return: the modified city
+    """
     city = fix_replacement(city)  # Replace mapping for wrong/duplicate entries
     city = string.capwords(city)  # Normalize the string to capitalize each word
     city = city.replace(",kolkata", ", Kolkata")
     return city
 
 
-# Helper function to fix addr:housename
-# STATUS: ok
 def fix_addr_housename(val):
+    """
+    to fix addr:housename
+    :param val: the house-name that needs to be fixed
+    :return: the modified house-name
+    """
     if isinstance(val, unicode):  # Remove Unicode
         val = unidecode.unidecode(val)
     val = val.replace("WB", "West Bengal")  # Replace shortened state name
@@ -269,18 +266,24 @@ def fix_addr_housename(val):
     return val
 
 
-# Helper function to fix addr:housenumber
-# STATUS: ok
 def fix_addr_housenumber(val):
+    """
+    to fix addr:housenumber
+    :param val: the house-number that needs to be fixed
+    :return: the modified house-number
+    """
     if isinstance(val, unicode):
         val = unidecode.unidecode(val)
     val = re.sub(r'[^\w\+\/\&\.\- ]', '', val)
     return val
 
 
-# Helper function to fix addr:postcode
-# STATUS: ok
 def fix_addr_postcode(val):
+    """
+    to fix addr:postcode
+    :param val: the postcode that needs to be fixed
+    :return: the modified postcode
+    """
     if isinstance(val, unicode):
         val = unidecode.unidecode(val)
     val = re.sub(r'[ ]', '', val)
@@ -292,12 +295,20 @@ def fix_addr_postcode(val):
 
 
 def fix_addr_state(val):
+    """
+    to fix addr:state
+    :param val: the name of the state that needs to be fixed
+    :return: the fixed state name
+    """
     return fix_replacement(val)
 
 
-# Helper function to fix addr:street
-# STATUS: ok
 def fix_addr_street(val):
+    """
+    to fix addr:street
+    :param val: the street name that needs modification
+    :return: the modified street name
+    """
     a = val.split(" ")
     a[-1] = fix_replacement(a[-1])
     val = " ".join(a)
@@ -305,34 +316,60 @@ def fix_addr_street(val):
     return val
 
 
-# Helper function to fix brand
 def fix_brand(val):
+    """
+    to fix brand names
+    :param val: the brand name that needs to be fixed
+    :return: the fixed brand name
+    """
     return fix_replacement(val)
 
 
-# Helper function to fix is_in
+# Helper function
 def fix_is_in(val):
+    """
+    to fix is_in
+    :param val: the is_in value that needs normalization
+    :return: the normalized value
+    """
     return fix_replacement(val)
 
 
-# Helper function to fix is_in:country
 def fix_is_in_country(val):
+    """
+    fix is_in:country
+    :param val: the country name that needs normalization
+    :return: the normalized country name
+    """
     return string.capwords(val)
 
 
-# Helper function to fix is_in:state
 def fix_is_in_state(val):
+    """
+    to fix is_in:state
+    :param val: the state name that needs to be fixed
+    :return: the fixed state name
+    """
     return fix_replacement(val)
 
 
-# Helper function to fix name and name:xx
 def fix_name(val):
+    """
+    to fix name and name:xx
+    :param val: the string containing names in different languages
+    :return: the fixed name
+    """
     if isinstance(val, unicode):
         val = unidecode.unidecode(val)
     return string.capwords(val)
 
 
 def fix_keys(val):
+    """
+    to fix the faulty keys
+    :param val: the string containing name of the faulty key
+    :return: the correct alternative of the key
+    """
     if val in map_tag_key:
         return map_tag_key[val]
     else:

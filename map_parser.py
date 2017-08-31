@@ -7,6 +7,10 @@ import pprint
 
 
 def count_tags():
+    """
+    this function parses the OSM file to count number of encountered tags
+    :return: the dictionary containing the tags and count
+    """
     tags = {}
     for elem in get_element(('node', 'way', 'relation', 'nd', 'member', 'tag')):
         if elem.tag in tags:
@@ -18,6 +22,10 @@ def count_tags():
 
 # print the tag counts
 def test():
+    """
+    counts the number of occurrences of the tags and displays it
+    :return: displays the count
+    """
     tags = count_tags()
     pprint.pprint(tags)
 

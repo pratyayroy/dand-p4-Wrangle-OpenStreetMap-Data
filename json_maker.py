@@ -84,8 +84,12 @@ CREATED = ["version", "changeset", "timestamp", "user", "uid"]  # to be stored a
 POS = ["lat", "lon"]  # to be stored as an array to key "pos"
 
 
-# main function to convert all attributes and tags of a node as a compact dictionary for JSON entry
 def shape_element(element):
+    """
+    main function to convert all attributes and tags of a node/way as a compact dictionary for JSON entry
+    :param element: the node/way whose all child tags will be added as key-value pair
+    :return: the dictionary containing all the tags of the node/way as key-value
+    """
     node = {}  # this dictionary will hold the converted XMLs
     # block applicable to WAY only
     if element.tag == "way":
@@ -139,8 +143,13 @@ def shape_element(element):
     return node
 
 
-# driver function to call a JSON entry and write back to the file
 def process_map(file_in, pretty=False):
+    """
+    driver function to call a JSON entry and write back to the file
+    :param file_in: the OSM file that needs to be converted
+    :param pretty: how the JSON will be formed (false makes it compact but not human-friendly)
+    :return: the file JSON file is created
+    """
     file_out = "{0}.json".format(file_in)
 
     with codecs.open(file_out, "w") as fo:
