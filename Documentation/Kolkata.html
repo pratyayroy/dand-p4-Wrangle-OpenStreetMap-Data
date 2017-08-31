@@ -11778,7 +11778,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h1><center> Data Wrangling | Kolkata OpenStreetMap </center></h1></p>
+<p><h1><center>Data Wrangling | Kolkata OpenStreetMap</center></h1></p>
 <hr>
 </div>
 </div>
@@ -13064,8 +13064,11 @@ div#notebook {
 <p><img src="../Screenshots/1.png" alt="title"></p>
 <p>Now you can easily find my edit in OSM (if still available) in this <a href="https://www.openstreetmap.org/way/519564562">link</a>. Here's a screenshot showing my update is live.
 <img src="../Screenshots/2.png" alt="title"></p>
-<p>So, what I think is, OSM should not allow creation of <strong>any tag</strong> and be reserved to some extent. Since this organization is community-driven, it is good to have a review policy (from high contributing users of that locality) to make things more accurate. Also various issues that I faced like variation in letter-cases, abbreviation of street names, states, brands can be nullified with some simple hints and validations before actual entry in the database. Anomaly in postcodes can be eliminated by hinting users of nearby postcodes (so that in cases of hit, it can be auto-filled) and before entry validating the digit-count defined in that country. Also there is no need to store redundant data like country, state, city for every node if it's latitude and longitude falls within the area defined by the respective country, state and city
+<p>So, what I think is, OSM should not allow creation of <strong>any tag</strong> and be reserved to some extent. Since this organization is community-driven, it is good to have a review policy (from high contributing users of that locality) to make things more accurate.</p>
+<p>Also various issues that I faced like <strong>variation in letter-cases</strong>, <strong>abbreviation of street names</strong>, <strong>states</strong>, <strong>brands</strong> can be nullified with some simple <strong>hints</strong> and <strong>validations</strong> before actual entry in the database. Anomaly in postcodes can be eliminated by <strong>hinting users of nearby postcodes</strong> (so that in cases of hit, it can be auto-filled) and before entry validating the digit-count defined in that country.</p>
+<p>There's no need to <strong>store redundant data like country, state, city for every node</strong> if it's latitude and longitude falls within the area defined by the respective country, state and city
 ).</p>
+<p>One more feature that can be introduced is <strong>Question-Answers</strong> to fill in minute details of a place that users forget to put in when creating a node. Some examples includes cuisines of a restaurant. If a number of people suggests different cuisines, then we can implicitly build a menu-sort of thing. This can be helpful for intuitive searches like <em>"Chinese Restaurants near me"</em>. More examples will include expensiveness of a shop, if it's a tourist attraction etc. Based on a threshold we can conclude the confidence of the detail and make it public.</p>
 <p>Now a relative competitor to this <strong>editable</strong> feature of OSM is <strong>Google Local Guides</strong> program that is though not much flexible but attracts more users due to their <strong>rewards</strong> (level-based). This can be used as a motivating factor for more contributions to OSM.</p>
 <p>Also I found <a href="https://taginfo.openstreetmap.org/">tagsinfo</a> really helpful. But if there are specific tags that a particular country is using, (like <strong>IR:zone</strong> means <strong>Indian Railways - zone</strong>) proper wiki should be provided before the usage. This makes OSM more documented and understandable.</p>
 <h3 id="9.2-Anticipated-problems-in-implementing-the-improvements">9.2 Anticipated problems in implementing the improvements<a class="anchor-link" href="#9.2-Anticipated-problems-in-implementing-the-improvements">&#194;&#182;</a></h3><ul>
@@ -13085,8 +13088,14 @@ div#notebook {
 </li>
 </ul>
 <ul>
+<li><p><strong><em>Question-Answer based editing of nodes may attract boredom if not configured uniquely for a region</em></strong></p>
+<p>A potential problem for Question-Answers detail filling method is it contain irrelevant questions if not devised for that region.</p>
+<p>Example: As I have discussed earlier, <em>"salad bars"</em> and <em>"drinks"</em> are not offered in 90% of Bengal restaurants. But they are famous and very relevant in other areas. So, constant questioning of these, might make local contributors bored. So, if implemented properly OSM can be heavily benefited from this.</p>
+</li>
+</ul>
+<ul>
 <li><p><strong><em>To the best of my knowledge, redundancy and validation improvements can be carried out without any problems</em></strong></p>
-<p>At least in Kolkata all postal-codes are solid polygonal areas and mutually exclusive. Now if they are not solid and have holes (of other postal-codes) in them then it may be hard to implement but if not mutually exclusive then, it's impossible.</p>
+<p>At least in Kolkata all postal-codes are solid polygonal areas and mutually exclusive. Now if they are not solid and have holes (of other postal-codes) in them then it may be hard to implement but if not mutually exclusive, then it's impossible.</p>
 <p>However if the data is collected from individual then it may be prone to errors. Best demarcations can be provided by the Municipality.</p>
 </li>
 </ul>
