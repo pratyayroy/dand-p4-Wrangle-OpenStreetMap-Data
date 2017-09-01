@@ -14,6 +14,7 @@ Documents
 * **Documentation**: This folder contains actual report of this project.
 	*  **Kolkata.ipynb**: This is the Jupyter Notebook containing the detailed report of my Data Wrangling project.
 	*  **Kolkata.html**: The html export of my notebook for those who don't have Jupyter installed. A simple browser is enough to view the report.
+	*  **Udacity_Reviews.pdf**: This is Udacity Review for this project report.
 * **maps_uncompressed**: This folder contains the unzipped extracts and converted JSON for MongoDB import.
 	* **custom_kolkata.osm** *(please refer to notes)*: The unzipped version of the custom extract of Kolkata.
 	* **custom_kolkata.osm.json** *(please refer to notes)*: The JSON equivalent of the uncompressed .osm map.
